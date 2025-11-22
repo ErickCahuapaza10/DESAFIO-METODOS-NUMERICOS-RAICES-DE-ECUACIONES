@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Métodos Numéricos</title>
+
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="app-header">
+        <div class="app-header-content">
+            <h1>Calculadora de Métodos Numéricos</h1>
+            <p class="subtitle">
+                Proyecto interactivo para la determinación de raíces mediante
+                <span class="highlight">Bisección</span>,
+                <span class="highlight">Newton-Raphson</span> y
+                <span class="highlight">Secante</span>.
+            </p>
+            <p class="meta">
+                Trabajo académico • Métodos Numéricos • 2025
+            </p>
+        </div>
+    </header>
+
+    <!-- Navegación tipo tabs -->
+    <nav class="main-nav" aria-label="Selección de problemas">
+        <ul role="tablist">
+            <li><a href="#problema1" class="nav-link active" role="tab" aria-selected="true" aria-controls="problema1">Problema 1</a></li>
+            <li><a href="#problema2" class="nav-link" role="tab" aria-selected="false" aria-controls="problema2">Problema 2</a></li>
+            <li><a href="#problema3" class="nav-link" role="tab" aria-selected="false" aria-controls="problema3">Problema 3</a></li>
+            <li><a href="#problema4" class="nav-link" role="tab" aria-selected="false" aria-controls="problema4">Problema 4</a></li>
+            <li>
+                <a href="#custom-problem" class="nav-link custom-link" role="tab" aria-selected="false" aria-controls="custom-problem">
+                    Calculadora Personalizada
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="app-main">
+        <!-- PROBLEMA 1 -->
+        <section id="problema1" class="problema active" aria-labelledby="tab-problema1">
+            <header class="section-header">
+                <div>
+                    <h2>Problema 1</h2>
+                    <p class="equation">f(x) = x³ − e<sup>0.8x</sup> − 20</p>
+                </div>
+                <div class="tag-group">
+                    <span class="tag">No lineal</span>
+                    <span class="tag tag-info">Raíz aproximada en (0, 5)</span>
+                </div>
+            </header>
+
+            <div class="method-container">
+                <div class="method-inputs">
+                    <h3>Bisección</h3>
+                    <div class="input-group">
+                        <label for="p1-bis-a">Punto a:</label>
+                        <input type="number" id="p1-bis-a" step="0.1" value="0" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p1-bis-b">Punto b:</label>
+                        <input type="number" id="p1-bis-b" step="0.1" value="5" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Newton-Raphson</h3>
+                    <p class="derivada">
+                        Derivada analítica:<br />
+                        f'(x) = 3x² − 0.8 e<sup>0.8x</sup>
+                    </p>
+                    <div class="input-group">
+                        <label for="p1-new-x0">Inicial x₀:</label>
+                        <input type="number" id="p1-new-x0" step="0.1" value="3" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Secante</h3>
+                    <div class="input-group">
+                        <label for="p1-sec-x0">Punto x₀:</label>
+                        <input type="number" id="p1-sec-x0" step="0.1" value="3" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p1-sec-x1">Punto x₁:</label>
+                        <input type="number" id="p1-sec-x1" step="0.1" value="3.1" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-controls">
+                <div class="control-group">
+                    <label for="p1-tol">Tolerancia:</label>
+                    <input type="number" id="p1-tol" value="0.00001" step="0.00001" />
+                </div>
+                <button class="btn btn-primary btn-calcular" data-problem="p1">
+                    Calcular métodos
+                </button>
+                <span class="loader" aria-live="polite"></span>
+            </div>
+
+            <section class="summary-panel" id="p1-summary" aria-label="Resumen comparativo"></section>
+
+            <div class="results-grid" id="p1-results"></div>
+        </section>
+
+        <!-- PROBLEMA 2 -->
+        <section id="problema2" class="problema" aria-labelledby="tab-problema2">
+            <header class="section-header">
+                <div>
+                    <h2>Problema 2</h2>
+                    <p class="equation">f(x) = 3 sin(0.5x) − 0.5x + 2</p>
+                </div>
+                <div class="tag-group">
+                    <span class="tag">Trigonométrica</span>
+                    <span class="tag tag-info">Raíz aproximada en (4, 6)</span>
+                </div>
+            </header>
+
+            <div class="method-container">
+                <div class="method-inputs">
+                    <h3>Bisección</h3>
+                    <div class="input-group">
+                        <label for="p2-bis-a">Punto a:</label>
+                        <input type="number" id="p2-bis-a" step="0.1" value="4" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p2-bis-b">Punto b:</label>
+                        <input type="number" id="p2-bis-b" step="0.1" value="6" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Newton-Raphson</h3>
+                    <p class="derivada">
+                        Derivada analítica:<br />
+                        f'(x) = 1.5 cos(0.5x) − 0.5
+                    </p>
+                    <div class="input-group">
+                        <label for="p2-new-x0">Inicial x₀:</label>
+                        <input type="number" id="p2-new-x0" step="0.1" value="5" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Secante</h3>
+                    <div class="input-group">
+                        <label for="p2-sec-x0">Punto x₀:</label>
+                        <input type="number" id="p2-sec-x0" step="0.1" value="4.8" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p2-sec-x1">Punto x₁:</label>
+                        <input type="number" id="p2-sec-x1" step="0.1" value="5" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-controls">
+                <div class="control-group">
+                    <label for="p2-tol">Tolerancia:</label>
+                    <input type="number" id="p2-tol" value="0.00001" step="0.00001" />
+                </div>
+                <button class="btn btn-primary btn-calcular" data-problem="p2">
+                    Calcular métodos
+                </button>
+                <span class="loader" aria-live="polite"></span>
+            </div>
+
+            <section class="summary-panel" id="p2-summary"></section>
+
+            <div class="results-grid" id="p2-results"></div>
+        </section>
+
+        <!-- PROBLEMA 3 -->
+        <section id="problema3" class="problema" aria-labelledby="tab-problema3">
+            <header class="section-header">
+                <div>
+                    <h2>Problema 3</h2>
+                    <p class="equation">
+                        f(x) = x³ − x² e<sup>−0.5x</sup> − 3x + 1
+                    </p>
+                </div>
+                <div class="tag-group">
+                    <span class="tag">Mixta</span>
+                    <span class="tag tag-info">Intervalo inicial (0, 1)</span>
+                </div>
+            </header>
+
+            <div class="method-container">
+                <div class="method-inputs">
+                    <h3>Bisección</h3>
+                    <div class="input-group">
+                        <label for="p3-bis-a">Punto a:</label>
+                        <input type="number" id="p3-bis-a" step="0.1" value="0" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p3-bis-b">Punto b:</label>
+                        <input type="number" id="p3-bis-b" step="0.1" value="1" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Newton-Raphson</h3>
+                    <p class="derivada">
+                        Derivada definida de forma analítica dentro del sistema.
+                    </p>
+                    <div class="input-group">
+                        <label for="p3-new-x0">Inicial x₀:</label>
+                        <input type="number" id="p3-new-x0" step="0.1" value="0.5" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Secante</h3>
+                    <div class="input-group">
+                        <label for="p3-sec-x0">Punto x₀:</label>
+                        <input type="number" id="p3-sec-x0" step="0.1" value="0.4" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p3-sec-x1">Punto x₁:</label>
+                        <input type="number" id="p3-sec-x1" step="0.1" value="0.5" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-controls">
+                <div class="control-group">
+                    <label for="p3-tol">Tolerancia:</label>
+                    <input type="number" id="p3-tol" value="0.00001" step="0.00001" />
+                </div>
+                <button class="btn btn-primary btn-calcular" data-problem="p3">
+                    Calcular métodos
+                </button>
+                <span class="loader" aria-live="polite"></span>
+            </div>
+
+            <section class="summary-panel" id="p3-summary"></section>
+
+            <div class="results-grid" id="p3-results"></div>
+        </section>
+
+        <!-- PROBLEMA 4 -->
+        <section id="problema4" class="problema" aria-labelledby="tab-problema4">
+            <header class="section-header">
+                <div>
+                    <h2>Problema 4</h2>
+                    <p class="equation">
+                        f(x) = cos²(x) − 0.5 x e<sup>0.3x</sup> + 5
+                    </p>
+                </div>
+                <div class="tag-group">
+                    <span class="tag">No lineal</span>
+                    <span class="tag tag-info">Intervalo inicial (4, 6)</span>
+                </div>
+            </header>
+
+            <div class="method-container">
+                <div class="method-inputs">
+                    <h3>Bisección</h3>
+                    <div class="input-group">
+                        <label for="p4-bis-a">Punto a:</label>
+                        <input type="number" id="p4-bis-a" step="0.1" value="4" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p4-bis-b">Punto b:</label>
+                        <input type="number" id="p4-bis-b" step="0.1" value="6" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Newton-Raphson</h3>
+                    <p class="derivada">
+                        Derivada analítica implementada internamente.
+                    </p>
+                    <div class="input-group">
+                        <label for="p4-new-x0">Inicial x₀:</label>
+                        <input type="number" id="p4-new-x0" step="0.1" value="5" />
+                    </div>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Secante</h3>
+                    <div class="input-group">
+                        <label for="p4-sec-x0">Punto x₀:</label>
+                        <input type="number" id="p4-sec-x0" step="0.1" value="4.9" />
+                    </div>
+                    <div class="input-group">
+                        <label for="p4-sec-x1">Punto x₁:</label>
+                        <input type="number" id="p4-sec-x1" step="0.1" value="5" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="common-controls">
+                <div class="control-group">
+                    <label for="p4-tol">Tolerancia:</label>
+                    <input type="number" id="p4-tol" value="0.00001" step="0.00001" />
+                </div>
+                <button class="btn btn-primary btn-calcular" data-problem="p4">
+                    Calcular métodos
+                </button>
+                <span class="loader" aria-live="polite"></span>
+            </div>
+
+            <section class="summary-panel" id="p4-summary"></section>
+
+            <div class="results-grid" id="p4-results"></div>
+        </section>
+
+        <!-- CALCULADORA PERSONALIZADA -->
+        <section id="custom-problem" class="problema" aria-labelledby="tab-custom-problem">
+            <header class="section-header section-header-custom">
+                <div>
+                    <h2>Calculadora Personalizada</h2>
+                    <p class="equation">
+                        Ingresa tu propia función f(x) y aplica los métodos de Bisección, Newton y Secante.
+                    </p>
+                </div>
+                <div class="tag-group">
+                    <span class="tag tag-custom">Modo avanzado</span>
+                    <span class="tag tag-info">Soporta sin, cos, exp, log, sqrt…</span>
+                </div>
+            </header>
+
+            <div class="custom-input-container">
+                <label for="custom-eq" class="custom-label">Ecuación f(x):</label>
+                <input
+                    type="text"
+                    id="custom-eq"
+                    class="custom-input"
+                    placeholder="Ejemplo: x^2 - sin(x) - 1"
+                    autocomplete="off"
+                />
+                <p class="helper-text">
+                    Puedes usar notación matemática estándar:
+                    <code>x^3</code>,
+                    <code>sin(x)</code>,
+                    <code>cos(x)</code>,
+                    <code>exp(x)</code>,
+                    <code>log(x)</code>,
+                    <code>sqrt(x)</code>, <code>pi</code>, <code>e</code>.
+                </p>
+            </div>
+
+            <div class="method-container">
+                <div class="method-inputs">
+                    <h3>Parámetros Bisección</h3>
+                    <div class="input-group">
+                        <label for="custom-bis-a">Punto a:</label>
+                        <input type="number" id="custom-bis-a" value="0" />
+                    </div>
+                    <div class="input-group">
+                        <label for="custom-bis-b">Punto b:</label>
+                        <input type="number" id="custom-bis-b" value="2" />
+                    </div>
+                    <button class="btn btn-outline btn-calcular-custom" data-method="bis">
+                        Calcular Bisección
+                    </button>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Parámetros Newton</h3>
+                    <p class="derivada small">
+                        La derivada se calcula automaticamente.
+                    </p>
+                    <div class="input-group">
+                        <label for="custom-new-x0">Inicial x₀:</label>
+                        <input type="number" id="custom-new-x0" value="1" />
+                    </div>
+                    <button class="btn btn-outline btn-calcular-custom" data-method="new">
+                        Calcular Newton-Raphson
+                    </button>
+                </div>
+
+                <div class="method-inputs">
+                    <h3>Parámetros Secante</h3>
+                    <div class="input-group">
+                        <label for="custom-sec-x0">Punto x₀:</label>
+                        <input type="number" id="custom-sec-x0" value="0" />
+                    </div>
+                    <div class="input-group">
+                        <label for="custom-sec-x1">Punto x₁:</label>
+                        <input type="number" id="custom-sec-x1" value="1" />
+                    </div>
+                    <button class="btn btn-outline btn-calcular-custom" data-method="sec">
+                        Calcular Secante
+                    </button>
+                </div>
+            </div>
+
+            <div class="common-controls custom-controls">
+                <div class="control-group">
+                    <label for="custom-tol">Tolerancia global:</label>
+                    <input type="number" id="custom-tol" value="0.00001" step="0.00001" />
+                </div>
+                <span class="loader" id="custom-loader" aria-live="polite"></span>
+            </div>
+
+            <div id="custom-results" class="custom-results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Proyecto de Métodos Numéricos &copy; 2025</p>
+        <p>Desarrollado con HTML, CSS y JavaScript • </p>
+    </footer>
+
+    <!-- Lógica principal -->
+    <script src="script.js"></script>
+</body>
+</html>
